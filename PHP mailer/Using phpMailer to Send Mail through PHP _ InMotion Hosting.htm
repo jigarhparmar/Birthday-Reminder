@@ -1,0 +1,823 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=960">
+
+
+		  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="PHP PHPmailer send email webpage" />
+  <meta name="author" content="Brad Markle" />
+  <meta name="description" content="In this article, we will discuss using phpMailer to send mail through PHP" />
+  <title>Using phpMailer to Send Mail through PHP | InMotion Hosting</title>
+  <link rel="stylesheet" href="/support/templates/supportcentertemplate/css/minified.css?v=201310220836" type="text/css" />
+  <script src="/support/templates/supportcentertemplate/js/combined.js?v=201308261043" type="text/javascript"></script>
+
+
+
+		
+
+
+
+	<script type="text/javascript">
+		(function() {
+			var config = {
+				kitId: 'tkh8ukm',
+				scriptTimeout: 3000
+			};
+			var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+		})();
+	</script>
+
+
+
+
+
+
+	<!-- GA Code - www.inmotionhosting.com -->
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-1501988-1']);
+		_gaq.push(['_setCustomVar', 5, 'Author', 'none', 3]);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+
+
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1501988-19']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+		
+
+
+
+
+		<script type="text/javascript">
+                var launchChat = function() {
+                        window.open('https://chatwithourteam.com/licence/1001/open_chat.cgi?lang=ei&params=IMH%20IMH%20IMH%20-%20INMOTION%20HOSTING%20-%20IMH%20IMH%20IMH&groups=0', 'newwindow', 'width=600, height=600');
+
+			_gaq.push(['_setAccount', 'UA-1501988-1']);
+                        _gaq.push(['_trackEvent', 'chat', 'launch', 'support center']);
+			_gaq.push(['_trackEvent', 'chat-by-ip', 'launch-by-ip', '49.202.181.166']);
+						trackAnchorClickSC("trackAnchorClickChatSC");
+                }
+        </script>
+	
+
+
+
+
+
+	<link rel="shortcut icon" href="/img/imh_favicon.ico" type="image/x-icon" />
+
+
+
+
+
+
+			<script type="text/javascript">
+			jQuery('#search_in_header').live('submit', searchSubmit);
+			function searchSubmit(e) {
+				var txt = document.forms["search_in_header"].getElementById("mod-search-searchword").value;
+				txt = txt.replace("httpd.conf","httpdconf");
+				document.forms["search_in_header"].getElementById("mod-search-searchword").value = txt;
+			}
+		</script>
+	
+
+
+
+
+
+</head>
+<body>
+
+<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <div id="skip">
+    <a href="#main">Skip to Main Content</a>
+    <a href="#nav">Skip to Navigation</a>
+    </div>
+  
+<header role="banner">
+        <div class="container">
+            <div class="row">
+                <a href="/" class="span3"><img src="/img/logo-imh.png" alt="InMotion Hosting" /></a>
+		<div class="span6 offset3">
+			<ul class="nav nav-pills nav-pills-contact pull-right">
+				<li class="pull-right sales-label">Questions? Contact Support:</li>
+				<li class="no-margin clear"><a class="no-margin chat" onclick="launchChat();return false;"><i class="icon-chat"></i> Support Chat</a></li>
+				<li class="nav-pills-no-link no-margin"><i class="icon-phone"></i> 888.321.HOST(4678)</li>
+			</ul>
+		</div>
+            </div>
+        </div>
+    </header>
+    <nav id="nav" class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav ico">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Web Hosting</a>
+                        <ul class="dropdown-menu">
+                        <li ><a href="/business-hosting">
+                            <i class="dd icon-business"></i>Business Hosting</a></li>
+                        <li ><a href="/vps-hosting">
+                            <i class="dd icon-vps"></i>VPS Hosting</a></li>
+                        <li ><a href="/dedicated-servers">
+                            <i class="dd icon-dedi"></i>Dedicated Servers</a></li>
+			<li ><a href="/reseller-hosting"><i class="dd icon-reseller"></i>Reseller Hosting</a></li>
+			<li ><a href="/managed-hosting">Managed Hosting</a></li>
+                        <li ><a href="/premier-support">Premier Support &trade;</a></li>
+                        </ul>
+                    </li><!-- /.dropdown -->
+                    <li ><a href="/domains">Domains</a></li>
+                    <li ><a href="/webdesign">Web Design</a></li>
+                    <li ><a href="/site-hosting-tools">Site Hosting Tools</a></li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meet Us</a>
+                        <ul class="dropdown-menu">
+                            <li ><a href="/meet-us">Meet Us</a></li>
+                            <li ><a href="/about-us">About Us</a></li>
+                            <li><a href="/partners-and-awards">Awards &amp; Partners</a></li>
+                            <li><a href="http://www.inmotionhosting.com/blog">Blog</a></li>
+                            <li><a href="http://www.inmotionhosting.com/employment">We're Hiring</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
+                        </ul>
+                    </li><!-- /.dropdown -->
+			<li class="amp-login"><a href="https://secure1.inmotionhosting.com/index/login"><i class="icon-amp-login"></i>AMP Login</a></li>
+			<li class="support-center active"><a href="http://www.inmotionhosting.com/support"><i class="icon-support-center"></i>Support Center</a></li>
+                </ul><!-- /.nav -->
+            </div>
+        </div>
+    </nav>
+  
+    <div id="main" role="main" style='background:#f9f9f9;'>
+
+	<div style="background:url('/img/rednoise.gif');">
+		<div class='sc_header_logo'>
+			<img src='/support/templates/supportcentertemplate/images/logo.png' style='float:left; margin-left:-138px;' usemap='sclogo' />
+			<map name='sclogo'><area shape='rect' coords='135,20,430,60' href='/support' alt='InMotion Hosting Support Center'></map>
+			<form action="/support/search" method="get" class="form-inline red_header_dsf" id="search_in_header" name="search_in_header">
+	 		<input name="searchword" id="mod-search-searchword" maxlength="80"  class="inputbox search-query" type="text" size="20" value="How may we help?"  onblur="if (this.value=='') this.value='How may we help?';" onfocus="if (this.value=='How may we help?') this.value='';" /> <button class="button btn btn-info" onclick="this.form.searchword.focus();" style='display:inline-block; width:80px; border-radius:3px; height:32px; line-height:22px; margin:0px;'>Search</button>
+			 </form>
+		</div>
+	</div>
+
+	<div style='background:#f3f3f3;'>
+		<div style='width:910px; margin:0px; margin-left:auto; margin-right:auto; position:relative;'>
+			
+<div id="menuWrap">
+  <div id="menuWrapInner" class="container_12 clearfix">
+  <div id="menu" class="width"> 
+    <!--Begin Menu-->
+    <ul id="menu">
+<li class='home_item bc_with_dd' itemscope itemtype='http://data-vocabulary.org/Breadcrumb'><a href='/support/' itemprop='url'><span itemprop='title'>Support Center<span></a><div class='dropdown_3columns'>
+<div class='col_1'>
+	<h2>Knowledge<br />Base</h2>
+	<ul>
+		<li><a href='/support/website'>Website</a></li>
+		<li><a href='/support/email'>Email</a></li>
+		<li><a href='/support/domain-names'>Domain Names</a></li>
+		<li><a href='/support/billing'>Billing</a></li>
+	</ul>
+</div>
+
+<div class='col_1'>
+	<a href='/support/community-support'><h2>Community Support</h2></a>
+	<ul>
+		<li><a href='/support/community-support'>Browse Questions</a></li>
+                <li><a href='/support/community-support/ask-a-question'>Ask a Question</a></li>
+                <li><a href='http://forum.inmotionhosting.com'>Forums</a></li>
+	</ul>
+</div>
+
+<div class='col_1'>
+	<h2>Tools & Resources</h2>
+	<ul>
+		<li><a href='/support/tools/blacklist-check'>Blacklist Check</a></li>
+		<li><a href='/support/tools/visual-domain-routing'>Visual DNS Lookup</a></li>
+		<li><a href='/support/tools/quicktagger'>Quick Tagger</a></li>
+		<li><a href='/support/resources/icons'>Icon Sets</a></li>
+		<li><a href='/support/tools/favicon-generator'>Favicon Generator</a></li>
+		<li><a href='/support/tools/bounce-back-parser'>Bounce Back Parser</a></li>
+	</ul>
+</div>
+
+<div class='col_3'>
+        <a href='/support/edu'><h2>Education Channels</h2></a>
+</div>
+<div class='col_1'>
+        <ul>
+		<li><a href='/support/edu/cpanel'>cPanel</a></li>
+		<li><a href='/support/edu/dokuwiki'>DokuWiki</a></li>
+		<li><a href='/support/edu/drupal-7'>Drupal 7</a></li>
+		<li><a href='/support/edu/drupal-8'>Drupal 8</a></li>
+                <li><a href='/support/edu/everything-email'>Everything Email</a></li>
+		<li><a href='/support/edu/joomla-25'>Joomla 2.5</a></li>
+		<li><a href='/support/edu/joomla-3'>Joomla 3.1</a></li>
+		<li><a href='/support/edu/magento'>Magento 1.6</a></li>
+		<li><a href='/support/edu/mambo'>Mambo</a></li>			
+        </ul>
+</div>
+<div class='col_1'>
+        <ul>
+                <li><a href='/support/edu/mediawiki'>MediaWiki</a></li>
+		<li><a href='/support/edu/moodle'>Moodle</a></li>
+		<li><a href='/support/edu/movable-type'>Movable Type</a></li>
+		<li><a href='/support/edu/opencart'>OpenCart</a></li>
+		<li><a href='/support/edu/oscommerce'>osCommerce</a></li>
+		<li><a href='/support/edu/php-fusion'>PHP-Fusion</a></li>
+		<li><a href='/support/edu/php-nuke'>PHP-Nuke</a></li>
+		<li><a href='/support/edu/phpbb'>phpBB</a></li>
+		<li><a href='/support/edu/phplist'>phpList</a></li>
+        </ul>
+</div>
+<div class='col_1'>
+        <ul>
+		<li><a href='/support/edu/premium-website-builder'>Premium Website Builder</a></li>
+                <li><a href='/support/edu/prestashop-15'>PrestaShop 1.5</a></li>
+                <li><a href='/support/edu/smf'>SMF</a></li>
+                <li><a href='/support/edu/tiki-wiki'>Tiki Wiki</a></li>
+                <li><a href='/support/edu/whm'>Web Hosting Manager</a></li>
+		<li><a href='/support/edu/website-design'>Website Design</a></li>
+                <li><a href='/support/edu/wordpress'>WordPress</a></li>
+	</ul>
+</div>
+</div></li><li class='bc_arrow'>&gt;&gt;</li><li class='bc_with_dd' itemscope itemtype='http://data-vocabulary.org/Breadcrumb'><a href='/support/email' itemprop='url'><span itemprop='title'>Email<span></a>
+			<div class='dropdown_4columns'>
+				<div class='col_2'><div><a href='/support/email/blackberry'>Blackberry</a> (1)</div><div><a href='/support/email/bounceback-errors'>Bounceback Errors</a> (18)</div><div><a href='/support/email/email-client-setup'>Email Client Setup</a> (8)</div><div><a href='/support/email/email-troubleshooting'>Email Troubleshooting</a> (21)</div><div><a href='/support/email/exim'>Exim</a> (8)</div><div><a href='/support/email/fighting-spam'>Fighting Spam</a> (14)</div><div><a href='/support/email/horde-webmail'>Horde Webmail</a> (15)</div><div><a href='/support/email/general-information'>How To and General Information</a> (17)</div><div><a href='/support/email/ipad'>ipad</a> (1)</div></div>
+				<div class='col_2'><div><a href='/support/email/iphone'>iPhone</a> (3)</div><div><a href='/support/email/mac-mail'>Mac Mail</a> (5)</div><div><a href='/support/email/mailing-lists'>Mailing Lists</a> (9)</div><div><a href='/support/email/outlook'>Outlook</a> (14)</div><div><a href='/support/email/outlook-2010'>Outlook 2010</a> (2)</div><div><a href='/support/email/roundcube-webmail'>RoundCube Webmail</a> (12)</div><div><a href='/support/email/send-email-from-a-page'>Sending Email From a Webpage</a> (5)</div><div><a href='/support/email/squirrelmail-webmail'>SquirrelMail Webmail</a> (16)</div><div><a href='/support/email/thunderbird'>Thunderbird</a> (7)</div><div><a href='/support/email/webmail'>Webmail</a> (2)</div></div>
+			</div>
+		</li><li class='bc_arrow'>&gt;&gt;</li><li class='bc_with_dd' itemscope itemtype='http://data-vocabulary.org/Breadcrumb'><a href='/support/email/send-email-from-a-page' itemprop='url'><span itemprop='title'>Sending Email From a Webpage<span></a><div class='dropdown_3columns'><div class='col_3'><div style='margin-bottom:10px;'><a style='display:inline;' href='/support/email/send-email-from-a-page/using-phpmailer-to-send-mail-through-php'>Using phpMailer to Send Mail through PHP</a> (48942 hits)</div><div style='margin-bottom:10px;'><a style='display:inline;' href='/support/email/send-email-from-a-page/how-to-set-up-formmail'>How to set up FormMail</a> (9516 hits)</div><div style='margin-bottom:10px;'><a style='display:inline;' href='/support/email/send-email-from-a-page/how-to-send-email-from-a-web-page'>How to send email from a web page</a> (5897 hits)</div><div style='margin-bottom:10px;'><a style='display:inline;' href='/support/email/send-email-from-a-page/why-wont-my-php-app-send-mail'>Why won't my PHP app send mail?</a> (4818 hits)</div><div style='margin-bottom:10px;'><a style='display:inline;' href='/support/email/send-email-from-a-page/download-phpmailer'>Download PHPMailer</a> (4400 hits)</div></div></div></li><li class='bc_arrow'>&gt;&gt;</li><li class='bc_no_dd' itemscope itemtype='http://data-vocabulary.org/Breadcrumb'><span itemprop='title'>Using phpMailer to Send Mail through PHP</span></li>			</ul>
+		</div>
+	</div>
+</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+	
+
+
+
+
+
+	<div style='width:910px; margin:0px; padding:30px 0px 30px 0px; margin-left:auto; margin-right:auto;'>
+
+		<div style='width:675px; margin:0px; padding:0px; float:left;'>
+
+	                       	
+			
+			
+<div id="system-message-container">
+<div id="system-message">
+</div>
+</div>
+			<div class="item-page">
+					
+		<div class="page-header">
+				<h1>
+															Using phpMailer to Send Mail through PHP									</h1>
+			
+																
+				
+					<div style='font-size:12px; color:#aaa; margin-bottom:-10px; padding-top:5px;'>
+							<div style='float:left; margin-right:20px;'><span style='color:#606060;'>Written by <a href='https://plus.google.com/102670474114655224886'>Brad Markle</a></div>
+							<div style='float:left; margin-right:20px;'><span style='color:#606060;'>Views:</span> 48,941</div>
+							<div style='float:left; margin-right:20px;'><span style='color:#606060;'>Published:</span> Aug 26, 2011</div>
+						<div style='float:left;'><span style='color:#606060;'>Last Modified:</span> Sep 17, 2013</div>		<div style='clear:both;'></div>
+						</div>
+						</div>
+	
+	
+		
+
+	
+				<iframe width='675' height='315' src='https://www.youtube.com/embed/JltHLzkghmY' frameborder='0' allowfullscreen style='margin-bottom:15px;'></iframe>
+				
+
+								<p>Besides using <a href="/support/website/how-to/using-the-php-mail-function-to-send-emails">PHP's <em>mail()</em> function</a>, there are a few other tools you can use to send mail from a PHP script. In this article, we'll show you how you can use <strong>PHPMailer</strong> to to send email from within PHP.</p>
+<p class="alert">When sending email from PHPMailer, you will be sending email from an actual email address. If you don't already have an email address setup specifically for sending email, please <a href="/support/edu/everything-email/introduction-email/creating-email-account">setup an email address</a> now. In the example below, we created the email address <strong>send_from_PHPMailer@bradm.inmotionhosting.com</strong> with "<strong>password</strong>" as the password.</p>
+<h2>Download the PHPMailer script</h2>
+<p>First, download PHPMailer using the direct link below:</p>
+
+<p style="margin-left:20px;"><a href="http://www.inmotionhosting.com/support/files/downloads/PHPMailer_5.2.0.zip" target="_blank">PHPMailer_5.2.0.zip</a></p>
+
+<p>After you have downloaded the file, <a target="_blank" href="/support/website/cpanel/compressing-uncompressing-files">unzip and extract</a> it to your <em>public_html</em>. After unzipping the file we have <em>public_html/PHPMailer_5.2.0</em>. Next you will need to <a href="/support/website/how-to/how-to-manage-files-server">edit your web pages</a> to use the PHPMailer code.</p>
+
+
+<h2>Add the HTML form to your page</h2>
+<p>Generally, your setup would include a form being sent to a PHP script for processing. In this case, there is a basic HTML file, <em>contact_us.html</em>, that makes up a feedback form. You will need to set the action of your form to &quot;<span style="color:#ff0000;"><em>email.php</em>&quot;</span> for the PHP script to process. Below is the code you need for the form in your page.</p>
+<pre style="margin-left:20px;padding:5px;border: 1px solid #cbcbcb">
+&lt;form method="post" action="<span style="color:#ff0000;">email.php</span>"&gt;
+  Email: &lt;input name="email" id="email" type="text" /&gt;&lt;br /&gt;
+
+  Message:&lt;br /&gt;
+  &lt;textarea name="message" id="message" rows="15" cols="40"&gt;&lt;/textarea&gt;&lt;br /&gt;
+
+  &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;
+
+</pre>
+
+<h2>Add the PHP mail() function code</h2>
+<p>When the form is filled out, the information is passed over to &quot;<span style="color:#ff0000;"><em>email.php</em></span>&quot;', which currently uses PHP's <em>mail()</em> function to send the message. Below is the PHP code that sends the email from the server.</p>
+<pre style="margin-left:20px;padding:5px;border: 1px solid #cbcbcb">
+&lt;?php
+
+  $email = $_REQUEST['email'] ;
+  $message = $_REQUEST['message'] ;
+
+  // here we use the php mail function
+  // to send an email to:
+  // you@yourdomain.com
+  mail( "bradm@inmotiontesting.com", "Feedback Form Results",$message, "From: $email" );
+?&gt;
+
+</pre>
+
+<h2>Add the PHPMailer code to your site</h2>
+<p>Because we are using the PHPMailer instead of the generic php mail function, we'll begin to update our <em>&quot;email.php&quot;</em> file. If you look in your PHPMailer folder you'll see a <em>README</em> file that includes sample PHP code. The sample PHP code should look like below:</p>
+<pre style="margin-left:20px;padding:5px;border: 1px solid #cbcbcb">
+&lt;?php
+require("class.PHPMailer.php");
+
+$mail = new PHPMailer();
+
+$mail-&gt;IsSMTP();                                      // set mailer to use SMTP
+$mail-&gt;Host = "smtp1.example.com;smtp2.example.com";  // specify main and backup server
+$mail-&gt;SMTPAuth = true;     // turn on SMTP authentication
+$mail-&gt;Username = "jswan";  // SMTP username
+$mail-&gt;Password = "secret"; // SMTP password
+
+$mail-&gt;From = "from@example.com";
+$mail-&gt;FromName = "Mailer";
+$mail-&gt;AddAddress("josh@example.net", "Josh Adams");
+$mail-&gt;AddAddress("ellen@example.com");                  // name is optional
+$mail-&gt;AddReplyTo("info@example.com", "Information");
+
+$mail-&gt;WordWrap = 50;                                 // set word wrap to 50 characters
+$mail-&gt;AddAttachment("/var/tmp/file.tar.gz");         // add attachments
+$mail-&gt;AddAttachment("/tmp/image.jpg", "new.jpg");    // optional name
+$mail-&gt;IsHTML(true);                                  // set email format to HTML
+
+$mail-&gt;Subject = "Here is the subject";
+$mail-&gt;Body    = "This is the HTML message body &lt;b&gt;in bold!&lt;/b&gt;";
+$mail-&gt;AltBody = "This is the body in plain text for non-HTML mail clients";
+
+if(!$mail-&gt;Send())
+{
+   echo "Message could not be sent. &lt;p&gt;";
+   echo "Mailer Error: " . $mail-&gt;ErrorInfo;
+   exit;
+}
+
+echo "Message has been sent";
+?&gt;
+</pre>
+<p>The great thing about this example is that it includes comments, which explain what most of the code does.</p>
+
+
+
+<h2>Final Configuration of the PHPMailer code</h2>
+<p>We've updated the sample code to work with our initial html contact form (first code example on this page). We updated the code to include additional comments, and the final code we used is below:</p>
+<pre style="margin-left:20px;padding:5px;border: 1px solid #cbcbcb">
+&lt;?php
+
+// $email and $message are the data that is being
+// posted to this page from our html contact form
+$email = $_REQUEST['email'] ;
+$message = $_REQUEST['message'] ;
+
+// When we unzipped PHPMailer, it unzipped to
+// public_html/PHPMailer_5.2.0
+require("lib/PHPMailer/PHPMailerAutoload.php");
+
+$mail = new PHPMailer();
+
+// set mailer to use SMTP
+$mail-&gt;IsSMTP();
+
+// As this email.php script lives on the same server as our email server
+// we are setting the HOST to localhost
+$mail-&gt;Host = "localhost";  // specify main and backup server
+
+$mail-&gt;SMTPAuth = true;     // turn on SMTP authentication
+
+// When sending email using PHPMailer, you need to send from a valid email address
+// In this case, we setup a test email account with the following credentials:
+// email: send_from_PHPMailer@bradm.inmotiontesting.com
+// pass: password
+$mail-&gt;Username = "send_from_PHPMailer@bradm.inmotiontesting.com";  // SMTP username
+$mail-&gt;Password = "password"; // SMTP password
+
+// $email is the user's email address the specified
+// on our contact us page. We set this variable at
+// the top of this page with:
+// $email = $_REQUEST['email'] ;
+$mail-&gt;From = $email;
+
+// below we want to set the email address we will be sending our email to.
+$mail-&gt;AddAddress("bradm@inmotiontesting.com", "Brad Markle");
+
+// set word wrap to 50 characters
+$mail-&gt;WordWrap = 50;
+// set email format to HTML
+$mail-&gt;IsHTML(true);
+
+$mail-&gt;Subject = "You have received feedback from your website!";
+
+// $message is the user's message they typed in
+// on our contact us page. We set this variable at
+// the top of this page with:
+// $message = $_REQUEST['message'] ;
+$mail-&gt;Body    = $message;
+$mail-&gt;AltBody = $message;
+
+if(!$mail-&gt;Send())
+{
+   echo "Message could not be sent. &lt;p&gt;";
+   echo "Mailer Error: " . $mail-&gt;ErrorInfo;
+   exit;
+}
+
+echo "Message has been sent";
+?&gt;
+</pre>
+
+
+<p>So in the test the user first visits <em>contact_us.html</em>. When they fill in their email address and comment, the information is posted to <em>email.php</em>. <em>email.php</em> calls PHPMailer, and then sends us the data that the user submitted.</p>
+<p class="alert">Note that PHPMailer is very flexible and has more features than described here. For a listing of the optional variables that you can add, you should read the documentation:</p>
+<p><a href="http://phpmailer.sourceforge.net/docs/" target="_blank" style="outline-style: none; outline-width: initial; outline-color: initial; color: #306090;">http://PHPMailer.sourceforge.net/docs/</a></p> 
+	
+						 </div>
+
+	
+
+
+
+
+
+
+	<a name='like_this_article'></a>
+		<div style='text-align:right; margin:30px -22px 0px 0px;'>
+			<span style='padding-right:15px;'>Like this Article?</span>
+			<iframe src='//www.facebook.com/plugins/like.php?href=http://www.inmotionhosting.com/support/email/send-email-from-a-page/using-phpmailer-to-send-mail-through-php&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=209145459223160' scrolling='no' frameborder='0' style='border:none; overflow:hidden; width:100px; height:21px;' allowTransparency='true'></iframe>
+			
+<div class='g-plusone' data-size='medium' data-href='http://www.inmotionhosting.com/support/email/send-email-from-a-page/using-phpmailer-to-send-mail-through-php'></div>
+<script type='text/javascript'>
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+			<a href='https://twitter.com/share' class='twitter-share-button' data-via='inmotionhosting'>Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');</script>
+		</div>
+	
+	<div style='clear:both;'></div>
+
+
+	<div class='individual_comment'>
+		<div>
+			<img src='/support/images/avatars/default_avatar.jpg' style='max-width:30px; margin-right:15px;' />
+			<a style='font-size:16px;' href='/support/community-support/users/OperaQ'>OperaQ</a> 
+			<span style='font-size:12px; color:#aaa; padding-left:10px;'>2012-05-02 1:38 pm</span>
+		</div>
+		<div>This was perfectly presented! Thanks, Brad!</div>
+	</div>
+	<a name='post_a_comment'></a><p style='margin-top:30px;'><a href='/support/login'>Login to comment.</a></p>
+		</div>
+		
+		<div style='width:220px; margin:0px; float:right;'>
+			        		<div class="moduletable">
+					
+<h3>Support Center Login</h3>
+<div class='login_with_facebook'><a href='/support/login-with-facebook'>Login with Facebook</a></div>
+<div class='login_with_google'><a href='/support/login-with-google'>Login with Google+</a></div>
+<div style='font-size:11px; width:100px; float:right; line-height:14px;'><a href='/support/login'>Can I login without using Social Media?</a></div>
+<div style='clear:both;'></div>
+
+
+		</div>
+			<div class="moduletable">
+					
+                <h3>Related Questions</h3>
+                <div>Here are a few questions related to this article that our customers have asked:</div>
+        
+				<div style='margin:10px 0px;'>
+                                        <a href='/support/community-support/resources/when-using-phpmailer-getting-error-message'>PHPMail - Warning: Wrong datatype... /class.phpmailer.php</a>
+                                </div>
+			
+                <div>Would you like to ask a question about this page? If so, click the button below!</div>
+                <div style='text-align:right; margin-top:10px;'><a class='btn btn-primary' href='/support/community-support/ask-a-question'>Ask a Question</a></div>
+        		</div>
+	
+	</div>
+	
+
+      <div style='clear:both;'></div>
+    </div>
+
+	<div style="background:url('/img/pattern.gif');">
+		<div style='width:910px; margin:0px; padding:10px 0px 10px 0px; margin-left:auto; margin-right:auto;'>
+			<h2 style='text-align:center;margin-bottom:10px;'>Need more Help?</h2>
+
+
+<div style='border:1px solid #ddd; background:#fff; padding:20px;'>
+
+	<div style='float:left; width:47%; border-bottom:1px solid #ddd; height:110px;'>
+
+		<h3>Search</h3>
+		<form action="/support/search" method="get" >
+    			<input name="searchword" id="mod-search-searchword" maxlength="80"  class="inputbox search-query" type="text" size="20" value="How may we help?"  onblur="if (this.value=='') this.value='How may we help?';" onfocus="if (this.value=='How may we help?') this.value='';" />
+			<button class="button btn btn-info" onclick="this.form.searchword.focus();">Search</button>
+		 </form>
+	</div>
+
+	<div style='float:right; width:47%; border-bottom:1px solid #ddd; height:110px;'>
+
+                <h3>Ask the Community!</h3>
+                <div>Get help with your questions from our community of like-minded hosting users and InMotion Hosting Staff.</div>
+                <ul style='margin-left:18px;'>
+                        <li style='float:left; padding:0px 40px 0px 0px;'><a href='/support/community-support'>Browse Questions</a></li>
+                        <li style='float:left;'><a href='/support/community-support/ask-a-question'>Ask a Question</a></li>
+                </ul>
+        </div>
+
+	<div style='clear:both; margin-bottom:20px;'></div>
+
+	<div style='float:left; width:47%;'>
+
+		<h3>Current Customers</h3>
+                <table>
+                        <tr>
+                                <th style='text-align:right;'>Chat:</th>
+                                <td><a rel="nofollow" href="https://chatwithourteam.com/licence/1001/open_chat.cgi?lang=eh&params=IMH%20IMH%20IMH%20-%20INMOTION%20HOSTING%20-%20IMH%20IMH%20IMH&groups=0" onclick="window.open('https://chatwithourteam.com/licence/1001/open_chat.cgi?layout=inm&lang=ei&params=IMH%20IMH%20IMH%20-%20INMOTION%20HOSTING%20-%20IMH%20IMH%20IMH&amp;groups=0&amp;dc='+escape(document.cookie+';l='+document.location+';r='+document.referer+';s='+typeof lc_session),'chat_1001','width=529,height=520,resizable=yes,scrollbars=no,status=1');return false;">Click to Chat Now</a>
+                                </td>
+				<th style='text-align:right;'>E-mail:</th>
+                                <td><a href="mailto:support@inmotionhosting.com">support@InMotionHosting.com</a></td>
+                        </tr>
+                        <tr>
+				<th style='text-align:right;'>Call:</th>
+                                <td>888-321-HOST (4678)</td>
+                                <th style='padding-left:10px;text-align:right;'>Ticket:</th>
+                                <td><a href='https://support.inmotionhosting.com/cgi-bin/pdesk.cgi' title='Submit a Support Ticket'>Submit a Support Ticket</a></td>
+                        </tr>
+                </table>
+
+	</div>
+
+	<div style='float:right; width:47%;'>
+
+		<h3>Not a Customer?</h3>
+		Get <a href="http://www.inmotionhosting.com">web hosting</a> from a company that is here to help. <a href="http://www.inmotionhosting.com">Sign up today!</a>
+	</div>
+
+	<div style='clear:both;'></div>
+</div>
+		</div>
+	</div>
+  
+    </div><!-- /#main -->
+  
+    <span class=""></span>
+<footer role="contentinfo" class="wrap">
+        <div class="container">
+	<ul class="nav nav-list span2">
+                <li class="nav-header">Web Hosting</li>
+		<li><a href="/business-hosting">Business Class Hosting</a></li>
+                <li><a href="/cheap-hosting">Cheap Hosting</a></li>
+                <li><a href="/vps-hosting">VPS Hosting</a></li>
+                <li><a href="/dedicated-servers">Dedicated Servers</a></li>
+		<li><a href="/reseller-hosting">Reseller Hosting</a></li>
+		<li><a href="/launch-assist">Launch Assist&trade;</a></li>
+                <li><a href="/managed-hosting">Managed Hosting</a></li>
+                <li><a href="/domains">Domain Names</a></li>
+                <li><a href="/webdesign">Web Design</a></li>
+            </ul>
+            <ul class="nav nav-list span2">
+                <li class="nav-header">Hosting Tools</li>
+                <li><a href="/wordpress-hosting">WordPress</a></li>
+                <li><a href="/joomla-hosting">Joomla</a></li>
+                <li><a href="/drupal-hosting">Drupal</a></li>
+                <li><a href="/host-with-cpanel">cPanel</a></li>
+                <li><a href="/prestashop-hosting">PrestaShop</a></li>
+                <li><a href="/moodle-hosting">Moodle</a></li>
+                <li><a href="/opencart-hosting">OpenCart</a><li>
+                </ul>
+            <ul class="nav nav-list span2">
+                <li class="nav-header">Community</li>
+                <li><a href="/premier-support">Premier Support &trade;</a></li>
+                <li><a href="http://www.inmotionhosting.com/support">Support Center</a></li>
+                <li><a href="/hosting-affiliate-program">Host Affiliate</a></li>
+                <li><a href="/infographics">Infographics</a></li>
+                <li><a href="/los-angeles-web-hosting">Los Angeles Hosting</a></li>
+                <li><a href="/meet-us/go-green">Green Data Centers</a></li>
+                <li><a href="http://www.inmotionhosting.com/edu">Student Web Hosting</a></li>
+            </ul>
+            <ul class="nav nav-list span2">
+                <li class="nav-header">About Us</li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/terms-of-service">Terms of Service</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="http://www.inmotionhosting.com/blog">Blog</a></li>
+                <li><a href="/guarantee">Guarantee</a></li>
+                <li><a href="/testimonials">Testimonials</a></li>
+                <li><a href="http://www.inmotionhosting.com/employment">We're Hiring</a></li>
+                <li><a href="/sitemap">Site Map</a></li>
+            </ul>
+        <div class="span3">
+            <ul class="ft-iconlist">
+                <li>Stay in touch on</li>
+                <li><a href="https://plus.google.com/+inmotionhosting/posts"><img src="/img/icon-google.png" alt="google+" ></a></li>
+                <li><a href="https://twitter.com/inmotionhosting"><img src="/img/icon-twitter.png" alt="twitter"></a></li>
+                <li><a href="https://www.facebook.com/inmotionhosting"><img src="/img/icon-facebook.png" alt="facebook"></a></li>
+            </ul>
+        </div>
+        <div itemscope itemtype="http://schema.org/LocalBusiness">
+            <span class="ft-logo pull-right"> <a href="/"><img src="/img/footer-logo.png" alt="InMotion Hosting"></a></span>
+            <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">6100 Center Drive, Suite 1190</span><br />
+            <span itemprop="addressLocality" class="city">Los Angeles</span>, <span itemprop="addressRegion" class="state">CA</span> <span itemprop="postalCode" class="postalcode">90045</span><br />
+            <span itemprop="telephone">888-321-HOST(4678)</span><br />
+            <span>2013 &copy; All Rights Reserved</span></p>
+        </div>
+        </div>
+    </div>
+    </footer>
+
+
+
+
+
+<div style='display:none;'><!-- Google Code for All IMH Visitors Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1071887445;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "irDaCIfI1AIQ1eiO_wM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1071887445/?label=irDaCIfI1AIQ1eiO_wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+
+
+
+
+<!-- Google Code for All Support Center Visitors Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1071887445;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "3soRCI_H1AIQ1eiO_wM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1071887445/?label=3soRCI_H1AIQ1eiO_wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+adroll_adv_id = "RTJSUGR5VJDLTAJZWPJL3N";
+adroll_pix_id = "FYDQCMNHNFBATJIQE2L5UC";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+
+
+
+
+
+
+<!-- Google Code for All IMH Vistirs -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1071887445;
+var google_conversion_label = "irDaCIfI1AIQ1eiO_wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1071887445/?value=0&amp;label=irDaCIfI1AIQ1eiO_wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

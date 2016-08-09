@@ -1,0 +1,3 @@
+Enable following extensions in php.ini
+php_openssl
+php_smtp
